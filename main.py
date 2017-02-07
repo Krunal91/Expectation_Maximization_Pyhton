@@ -1,7 +1,7 @@
 ## Packages required
 import numpy as np
 from matplotlib import pyplot as plt
-
+from pylab import  *
 ## Load and read  the file
 data1 = []
 with open("input/data1.txt", "r") as f:
@@ -54,18 +54,18 @@ def initilization(data1,num_class=3):
 # Initialize the data
     data1 = np.asarray(data1)
     class_weights = np.asmatrix([1/num_class]*num_class)
-    #np.random.seed(232)
+    np.random.seed(232)
     sd =np.asmatrix(np.random.randint(10,50,size=(1,num_class)))
-    #np.random.seed(232)
+    np.random.seed(232)
     mean = np.asmatrix(np.random.randint(1,10,size=(1,num_class)))
 
     old_final = np.asmatrix(np.repeat(0,num_class)).sum()
     return class_weights,mean,sd,old_final,num_class
 
 
-class_weights,mean,sd,old_final,num_class = initilization(data1,num_class=3)
 i =0
 all_likelihood=[]
+class_weights, mean, sd, old_final, num_class = initilization(data1, num_class=3)
 
 while True:
     prob, count = expectation(data1, num_class, class_weights, sd, mean)
@@ -84,11 +84,11 @@ while True:
 
     old_final = final_sum
     i += 1
-plt.interactive(False)
+
 plt.plot(range(len(all_likelihood)),all_likelihood)
 plt.xlabel("Number of iterations")
 plt.ylabel("Log likelihood of EM")
 plt.title("EM likelihood VS number of Iteration")
-plt.show()
+plt.savefig("EMplot3.png")
 
 
