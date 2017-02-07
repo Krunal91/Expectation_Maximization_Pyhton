@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from pylab import  *
 ## Load and read  the file
 data1 = []
-with open("input/data1.txt", "r") as f:
+with open("input/data.txt", "r") as f:
     for line in f:
         data1.append(float(line.strip()))
 
@@ -74,7 +74,7 @@ while True:
     final_sum=final.sum()
     all_likelihood.append(final_sum)
 
-    if (old_final == final_sum or i >250):
+    if (old_final == final_sum or i >700):
         print("Total number of iteration : {}".format(i))
         print("Log likelihood of the last iteration : {}".format(final_sum))
         print("Mean for all the distribution in sequence : {}".format(mean))
@@ -89,6 +89,6 @@ plt.plot(range(len(all_likelihood)),all_likelihood)
 plt.xlabel("Number of iterations")
 plt.ylabel("Log likelihood of EM")
 plt.title("EM likelihood VS number of Iteration")
-plt.savefig("EMplot3.png")
+plt.savefig("data3_6.png")
 
 
